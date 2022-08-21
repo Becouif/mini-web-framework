@@ -3,9 +3,9 @@
 import axios from 'axios';
 
 // get request
-axios.get('http://localhost:3000/users/1').then(function (response) {
-  console.log(response.request);
-});
+// axios.get('http://localhost:3000/users/1').then(function (response) {
+//   console.log(response.request);
+// });
 
 // post request to the server
 // axios.post('http://localhost:3000/users', {

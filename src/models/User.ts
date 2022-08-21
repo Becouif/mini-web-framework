@@ -1,3 +1,4 @@
+import axios, { AxiosResponse } from 'axios';
 interface userProps {
   id: number;
   name: string;
@@ -5,6 +6,8 @@ interface userProps {
 }
 // how to declare a callback as function
 type Callback = () => void;
+
+// start of class User
 export class User {
   // declare an obj without knowing what key it will have
   events: { [key: string]: Callback[] } = {};
@@ -29,5 +32,11 @@ export class User {
       callback();
     });
   }
-  fetch(): void {}
+  fetch(): void {
+    axios
+      .get(`http://localhost:3000/users/${this.get('id')}`)
+      .then((response: AxiosResponse): void => {
+        console.log(response.data);
+      });
+  }
 }
