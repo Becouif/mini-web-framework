@@ -1,14 +1,4 @@
-// using axios to send post request
+import { User } from './models/User';
 
-import axios from 'axios';
-
-// get request
-// axios.get('http://localhost:3000/users/1').then(function (response) {
-//   console.log(response.request);
-// });
-
-// post request to the server
-// axios.post('http://localhost:3000/users', {
-//   name: 'Enoch',
-//   age: 1188,
-// });
+const user = new User({ id: 3, name: 'james', age: 50 });
+user.save();

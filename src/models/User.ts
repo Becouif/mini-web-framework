@@ -16,6 +16,9 @@ export class User {
   get(propName: string): string | number {
     return this.data[propName];
   }
+  set(update: userProps): void {
+    Object.assign(this.data, update);
+  }
 
   // this on method means we are going to call on with string as first argument and function as second argument
   on(eventName: string, callback: Callback): void {
@@ -36,7 +39,17 @@ export class User {
     axios
       .get(`http://localhost:3000/users/${this.get('id')}`)
       .then((response: AxiosResponse): void => {
-        console.log(response.data);
+        this.set(response.data);
       });
+  }
+
+  save(): void {
+    const id = this.get('id');
+    if (id) {
+      axios.put(`http://localhost:3000/users/${id}`, this.data);
+    } else {
+      //  post
+      axios.post('http://localhost:3000/users', this.data);
+    }
   }
 }
