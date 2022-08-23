@@ -1,22 +1,25 @@
-import axios, { AxiosResponse } from 'axios';
-
-interface userProps {
-  id: number;
-  name: string;
-  age: number;
+import { Eventing } from './Eventing';
+import { Sync } from './Sync';
+export interface UserProps {
+  id?: number;
+  name?: string;
+  age?: number;
 }
 // how to declare a callback as function
 
+const rootUrl = 'https://localhost:300/users';
 // start of class User
 export class User {
-  // declare an obj without knowing what key it will have
+  public events: Eventing = new Eventing();
+  public sync: Sync<UserProps> = new Sync<UserProps>(rootUrl);
 
-  constructor(private data: userProps) {}
+  // declare an obj without knowing what key it will have
+  constructor(private data: UserProps) {}
 
   get(propName: string): string | number {
     return this.data[propName];
   }
-  set(update: userProps): void {
+  set(update: UserProps): void {
     Object.assign(this.data, update);
   }
 
@@ -38,22 +41,4 @@ export class User {
   //     callback();
   //   });
   // }
-
-  fetch(): void {
-    axios
-      .get(`http://localhost:3000/users/${this.get('id')}`)
-      .then((response: AxiosResponse): void => {
-        this.set(response.data);
-      });
-  }
-
-  save(): void {
-    const id = this.get('id');
-    if (id) {
-      axios.put(`http://localhost:3000/users/${id}`, this.data);
-    } else {
-      //  post
-      axios.post('http://localhost:3000/users', this.data);
-    }
-  }
 }
