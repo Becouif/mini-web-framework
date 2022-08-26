@@ -2,7 +2,7 @@ import axios, { AxiosResponse, AxiosPromise } from 'axios';
 import { UserProps } from './User';
 
 // using interface with generic to declare id in class Sync
-interface HasId {
+export interface HasId {
   id?: number;
 }
 export class Sync<T extends HasId> {
