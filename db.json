@@ -1,9 +1,24 @@
 {
   "users": [
     {
-      "name": "Enoch",
-      "age": 1188,
+      "name": "Uncanny",
+      "age": 58,
       "id": 1
+    },
+    {
+      "name": "Ade",
+      "age": 24,
+      "id": 2
+    },
+    {
+      "name": "Wale",
+      "age": 14,
+      "id": 3
+    },
+    {
+      "name": "james",
+      "age": 12,
+      "id": 4
     }
   ]
 }
