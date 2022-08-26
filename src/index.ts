@@ -1,3 +1,7 @@
 import { User } from './models/User';
 
-const user = new User({ id: 3, name: 'james', age: 50 });
+const user = User.buildUser({ id: 1 });
+
+user.on('change', () => {
+  console.log(user);
+});
