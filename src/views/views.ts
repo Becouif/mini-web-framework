@@ -43,6 +43,7 @@ export abstract class View<T extends Model<K>, K> {
       }
     }
   }
+  onRender(): void {}
 
   render(): void {
     this.parent.innerHTML = '';
@@ -50,6 +51,8 @@ export abstract class View<T extends Model<K>, K> {
     templateElement.innerHTML = this.template();
     this.bindEvents(templateElement.content);
     this.mapRegions(templateElement.content);
+    // nesting together before append
+    this.onRender();
     this.parent.append(templateElement.content);
   }
 }
